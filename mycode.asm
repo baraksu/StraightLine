@@ -1,0 +1,89 @@
+.MODEL small
+.STACK 100h
+.DATA
+    width equ 320
+    hight equ 200
+     
+    m db 0
+    b db 0     
+    
+    invMsg db 13, 10, 'What you entered is invalid! try again: $' 
+    enterM db 13, 10, 'Enter the m fot the function y = mx+b. The number must be between -9 and 9: $'
+    enterB db 13, 10, 'Enter the b fot the function y = mx+b. The number must be between -9 and 9: $'
+    
+.CODE
+start:  
+    mov ax, @data
+    mov ds, ax
+    
+    ; get m and b
+    lea dx, enterM 
+    mov ah, 09h
+    int 21h
+    push offset m
+    call GetNum
+                  
+    lea dx, enterB 
+    mov ah, 09h
+    int 21h
+    push offset b
+    call GetNum  
+    
+    
+    
+exit:
+    mov ah, 4ch
+    int 21h
+
+;------------------------------
+    
+proc GetNum
+    push bp
+    mov bp, sp
+    mov cl, 0   
+    
+    input:    
+        mov ah, 01h
+        int 21h
+    
+        cmp al, '-'
+        je pressedMinus
+        cmp al, '9'
+        ja invalid
+        cmp al, '0'
+        jb invalid
+    
+        sub al, '0' 
+        mov bx, [bp+4] 
+        pop bp
+           
+        cmp cl, 0FFh
+        je negative
+         
+        mov [bx], al
+    
+    ret 2        
+    
+    negative:
+        neg al
+        mov [bx], al
+        
+        ret 2 
+    
+    invalid:
+        mov cl, 0  
+        lea dx, invMsg 
+        mov ah, 09h
+        int 21h
+        
+        jmp input
+        
+    pressedMinus:    
+        not cl 
+        jmp input    
+    
+endp GetNum 
+
+
+    
+END
