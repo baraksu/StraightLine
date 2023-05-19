@@ -6,7 +6,7 @@
     scale equ 12
      
     m dw 0
-    b dw 0     
+    b db 0     
     
     invMsg db 13, 10, 'What you entered is invalid! try again: $' 
     enterM db 13, 10, 'Enter the m fot the function y = mx+b. The number must be between -9 and 9: $'
@@ -35,7 +35,8 @@ start:
     int 10h
     
     call DrawXAxis
-    call DrawYAxis 
+    call DrawYAxis  
+    call DrawGraph
     
     
     
@@ -123,6 +124,34 @@ proc DrawXAxis
     
     ret
 endp DrawXAxis
+
+
+proc PixelCalY 
+    mov ax, cx
+    sub ax, width/2 
+    
+    imul m 
+    
+    mov dl, scale
+    idiv dl
+  
+    add al, b
+    mov dl, hight/2
+    sub dl, al
+    
+    ret
+endp PixelCalY   
+ 
+  
+proc DrawGraph
+    mov cx, 319
+    graph:
+        call PixelCalY
+        call drawPixel
+    loop graph
+     
+    ret
+endp DrawGraph
 
 
 proc drawPixel
