@@ -97,16 +97,21 @@ endp GetNum
 
 
 proc DrawYAxis
-    mov dl, 0
+    xor dl, dl
     mov cx, width/2
-    drawYLine:
+    drawYLine1:
         call drawPixel
-        dec cx
-        call drawPixel
-        inc cx
         inc dl
-    cmp dl, hight
-    jb drawYLine
+        cmp dl, hight
+        jb drawYLine1
+    
+    xor dl, dl    
+    dec cx
+    drawYLine2:
+        call drawPixel
+        inc dl
+        cmp dl, hight
+        jb drawYLine2
     
     ret
 endp DrawYAxis 
@@ -115,12 +120,15 @@ endp DrawYAxis
 proc DrawXAxis
     mov cx, 319
     mov dl, hight/2
-    drawXLine:
+    drawXLine1:
         call drawPixel
-        dec dl
-        call drawPixel
-        inc dl
-    loop drawXLine
+        loop drawXLine1 
+        
+    mov cx, 319
+    dec dl
+    drawXLine2:
+        call drawPixel  
+        loop drawXLine2
     
     ret
 endp DrawXAxis
