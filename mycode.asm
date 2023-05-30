@@ -7,10 +7,14 @@
      
     m dw 0
     b db 0     
+    x db 0
     
     invMsg db 13, 10, 'What you entered is invalid! try again: $' 
     enterM db 13, 10, 'Enter the m fot the function y = mx+b. The number must be between -9 and 9: $'
-    enterB db 13, 10, 'Enter the b fot the function y = mx+b. The number must be between -9 and 9: $'
+    enterB db 13, 10, 'Enter the b fot the function y = mx+b. The number must be between -9 and 9: $'  
+    enterX db 13, 10, 'Enter X value you want the y for. The number must be between -99 and 99: $'  
+    outputY db 13, 10, 'The y value is: $' 
+    wantGraph db 13,10, 'Do you want to see the graph of the function? Press y for yes and anything else for no: $'
     
 .CODE
 start:  
@@ -22,13 +26,29 @@ start:
     mov ah, 09h
     int 21h
     push offset m
-    call GetNum
+    call GetMB
                   
     lea dx, enterB 
     mov ah, 09h
     int 21h
     push offset b
-    call GetNum 
+    call GetMB 
+    
+    lea dx, enterX
+    mov ah, 09h
+    int 21h
+    push offset x
+    call GetX
+    call ValueCalY 
+    call PrintY
+    
+    lea dx, wantGraph
+    mov ah, 09h
+    int 21h
+    mov ah, 01h
+    int 21h
+    cmp al, 'y'
+    jne exit
     
     mov ah, 0
     mov al, 13h
@@ -37,8 +57,7 @@ start:
     call DrawXAxis
     call DrawYAxis  
     call DrawGraph
-    
-    
+
     
 exit:
     mov ah, 4ch
@@ -46,21 +65,21 @@ exit:
 
 ;------------------------------
     
-proc GetNum
+proc GetMB
     push bp
     mov bp, sp
     mov cl, 0   
     
-    input:    
+    input1:    
         mov ah, 01h
         int 21h
     
         cmp al, '-'
-        je pressedMinus
+        je pressedMinus1
         cmp al, '9'
-        ja invalid
+        ja invalid1
         cmp al, '0'
-        jb invalid
+        jb invalid1
     
         sub al, '0' 
         mov bx, [bp+4] 
@@ -81,19 +100,82 @@ proc GetNum
         
         ret 2 
     
-    invalid:
+    invalid1:
         mov cl, 0  
         lea dx, invMsg 
         mov ah, 09h
         int 21h
         
-        jmp input
+        jmp input1
         
-    pressedMinus:    
+    pressedMinus1:    
         not cl 
-        jmp input    
+        jmp input1    
     
-endp GetNum
+endp GetMB
+
+proc GetX
+    push bp
+    mov bp, sp  
+    
+    mov si, [bp+4]
+    mov [si], 0
+    
+    xor dh,dh
+    mov cx, 2
+    
+    input2:
+        mov ah, 01h
+        int 21h
+        cmp al, '-'
+        je pressedMinus2 
+        cmp al, 13
+        je continue
+        cmp al, '0'
+        jb invalid2
+        cmp al, '9'
+        ja invalid2
+        
+        mov bl,1
+        mov bh, al 
+        mov al, [si]
+        mov dl, 10 
+        mul dl
+        
+        sub bh, '0'
+        add al, bh
+        mov [si], ax
+        
+        loop input2
+        
+    continue:
+        cmp dh, 0
+        je return
+        neg [si]
+        jmp return    
+           
+    pressedMinus2: 
+        cmp bl, 1
+        je invalid2        
+        not dh   
+        jmp input2 
+        
+    invalid2:    
+        lea dx, invMsg
+        mov ah, 09h
+        int 21h
+        
+        mov [si], 0 
+        xor bl, bl
+        xor dh,dh
+        mov cx, 2 
+        jmp input2
+        
+    return:
+        pop bp
+        ret 2
+        
+endp GetX 
 
 
 proc DrawYAxis
@@ -134,6 +216,29 @@ proc DrawXAxis
 endp DrawXAxis
 
 
+proc ValueCalY 
+    xor ah, ah 
+    mov al, x
+    imul byte ptr m 
+    
+    cmp b, 0
+    jge bPositive
+    
+    mov bh, 0FFh
+    mov bl, b 
+    add ax, bx
+    
+    ret
+    
+    bPositive:
+        xor bh, bh
+        mov bl, b
+        add ax, bx 
+    
+    ret
+endp ValueCalY
+    
+
 proc PixelCalY 
     mov ax, cx
     sub ax, width/2 
@@ -150,6 +255,50 @@ proc PixelCalY
     ret
 endp PixelCalY   
  
+
+proc PrintY
+    mov bx, ax
+    
+    lea dx, outputY
+    mov ah, 09h
+    int 21h
+    
+    mov ax, bx
+    xor ch, ch 
+    mov cl, 100 
+    
+    cmp ax, 0
+    jg printDig
+    mov dl, '-'
+    mov bx, ax
+    mov ah, 02h
+    int 21h     
+    mov ax, bx
+    neg ax
+    
+    printDig:      
+        div cl
+        mov bh, ah
+        add al, '0'
+        
+        mov dl, al 
+        mov ah, 02h
+        int 21h
+         
+        mov ax, cx 
+        mov bl, 10 
+        div bl
+        mov cl, al
+        
+        mov al, bh
+        xor ah, ah
+        
+        cmp cx, 0
+        jne printDig
+    
+    ret
+endp PrintY
+
   
 proc DrawGraph
     mov cx, 319
