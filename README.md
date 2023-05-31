@@ -11,9 +11,9 @@
 
 לבסוף היא שואלת את המשתמש האם הוא רוצה לראות את גרף הפונקציה. במידה שכן גרף הפונקציה מצויר על המסך. במידה שלא, התוכנית תסתיים.
 
-##דוגמאות ריצה: 
+##Running Examples: 
 
-![secret](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example1.jpg)
+![secret](Running%20Examples/Example1.jpg)
 ![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example2a.jpg)
 ![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example2b.jpg)
 ![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example3a.jpg)
