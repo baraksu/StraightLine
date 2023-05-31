@@ -10,3 +10,5 @@
 לבסוף היא שואלת את המשתמש האם הוא רוצה לראות את גרף הפונקציה. במישה שכן גרף הפונקציה מצויר על המסך. במידה שלא, התוכנית תסתיים.
 
 דוגמאות ריצה: 
+
+![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example1.jpg)
