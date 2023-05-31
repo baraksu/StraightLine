@@ -1,22 +1,50 @@
 # StraightLine
-שם: יואב שדה
-מורה: ברק צוברי
-כיתה: י'3
-בית ספר: ישיבת בני עקיבא גבעת שמואל
-שנה: תשפ"ג (2023)
+שם: יואב שדה, 
+מורה: ברק צוברי, 
+כיתה: י'3, 
+בית ספר: ישיבת בני עקיבא גבעת שמואל, 
+שנה: תשפ"ג (2023).
 
-התוכנית מקבלת מהמשתמש m ו- b עבור הפונקציה y = mx+b.
+*מה התוכנית עושה?*
+• מציגה לוגו יפה מאוד!
+• מבקשת מהמשתמש m i- b עבור הפונקציה y=mx+b.
+• מבקשת מהמשתמש ערך x שעבורו היא תדפיס ערך y.
+• שואלת האם לצייר גרף:
+	○ אם כן, התוכנית תצייר את גרף הפונקציה והתוכנית תסתיים.
+	○ אם לא, התוכנית תסתיים.
 
-לאחר מכן היא מבקשת מהמשתמש ערך x שעבורו הוא רוצה ערך y, והיא מדפיסה את עך ה- y הזה.
+**דוגמאות ריצה:**
+מקרה ללא ציור גרף:
+![Example1](Running%20Examples/Example1.jpg)
 
-לבסוף היא שואלת את המשתמש האם הוא רוצה לראות את גרף הפונקציה. במידה שכן גרף הפונקציה מצויר על המסך. במידה שלא, התוכנית תסתיים.
+פונקציה יורדת:
+![Example2](Running%20Examples/Example2a.jpg)
+![Example2](Running%20Examples/Example2b.jpg)
 
-##Running Examples: 
+פונקציה שמקבילה לציר x:
+![Example3](Running%20Examples/Example3a.jpg)
+![Example3](Running%20Examples/Example3b.jpg)
 
-![secret](Running%20Examples/Example1.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example2a.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example2b.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example3a.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example3b.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example4a.jpg)
-![alt text](https://github.com/baraksu/StraightLine/blob/main/Running%20Examples/Example4b.jpg)
+פונקציה עולה:
+![Example4](Running%20Examples/Example4a.jpg)
+![Example4](Running%20Examples/Example4b.jpg)
+
+
+*שלבי פיתוח התוכנה:*
+1. התנסות ראשונית עם ציור של פיקסלים על המסך.
+2. בניית אלגוריתם המצייר גרף של פונקציה על פי m, b.
+3. כתיבת פרוצדורה הקולטת את הפרמטרים m, b.
+4. שילוב של שלבים 2 ו- 3.
+5. כתיבת פרוצדורה הקולטת ערך x שעבורו יודפס ערך y.
+6. חישוב ערך ה- y עבור ה- x שהתקבל והדפסתו.
+7. לוגו.
+8. דף ReadMe.
+9. לבסוף, לחיצת Commit בפעם האחרונה.
+
+
+הייתי מוסיף שיהיה ניתן להכניס ערכי m ו- b דו ספרתיים ויותר, ולא רק חד ספרתיים כמו התוכנית הנוכחית.
+בנוסף לכך, הייתי מנסה לייעל את ציור הגרף (אני לא יודע אם ואיך אפשר) כדי שהוא שהוא יסורטט בפחות זמן.
+
+
+הפרוייקט הלך בצורה יחסית חלקה. כבר מההתחלה ידעתי בערך מה אני אמור לעשות מבחינה אלגוריתמית. לא היו דברים שבכלל לא ידעתי. אבל היו דברים שלא ידעתי איך "לתרגם" אותם לאסמבלי, וזה היה האתגר העיקרי.
+בסך הכל, הפרוייקט הרגיש די טוב. מאתגר אבל טוב.
