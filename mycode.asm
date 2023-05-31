@@ -9,6 +9,8 @@
     b db 0     
     x db 0
     
+    logo db 13,10,' _____ ___________  ___  _____ _____  _   _ _____   _     _____ _   _  _____',13,10,'/  ___|_   _| ___ \/ _ \|_   _|  __ \| | | |_   _| | |   |_   _| \ | ||  ___|',13,10,'\ `--.  | | | |_/ / /_\ \ | | | |  \/| |_| | | |   | |     | | |  \| || |__  ',13,10,' `--. \ | | |    /|  _  | | | | | __ |  _  | | |   | |     | | | . ` ||  __| ',13,10,'/\__/ / | | | |\ \| | | |_| |_| |_\ \| | | | | |   | |_____| |_| |\  || |___ ',13,10,'\____/  \_/ \_| \_\_| |_/\___/ \____/\_| |_/ \_/   \_____/\___/\_| \_/\____/ ',13,10,'$'
+                                                                                                                                                                                  
     invMsg db 13, 10, 'What you entered is invalid! try again: $' 
     enterM db 13, 10, 'Enter the m fot the function y = mx+b. The number must be between -9 and 9: $'
     enterB db 13, 10, 'Enter the b fot the function y = mx+b. The number must be between -9 and 9: $'  
@@ -20,7 +22,11 @@
 start:  
     mov ax, @data
     mov ds, ax
-    
+                 
+    lea dx, logo
+    mov ah, 09h
+    int 21h             
+                 
     ; get m and b
     lea dx, enterM 
     mov ah, 09h
