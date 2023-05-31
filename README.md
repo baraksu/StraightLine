@@ -13,11 +13,12 @@
 
 • מבקשת מהמשתמש ערך x שעבורו היא תדפיס ערך y.
 
-• שואלת האם לצייר גרף:
+• שואלת האם לצייר גרף?
 
-	○ אם כן, התוכנית תצייר את גרף הפונקציה והתוכנית תסתיים.
+	+ אם כן, התוכנית תצייר את גרף הפונקציה והתוכנית תסתיים.
 	
-	○ אם לא, התוכנית תסתיים.
+	- אם לא, התוכנית תסתיים.
+	
 
 **דוגמאות ריצה:**
 
@@ -26,9 +27,11 @@
 ![Example1](Running%20Examples/Example1.jpg)
 
 
+
 פונקציה יורדת:
 ![Example2](Running%20Examples/Example2a.jpg)
 ![Example2](Running%20Examples/Example2b.jpg)
+
 
 
 פונקציה שמקבילה לציר x:
@@ -36,9 +39,12 @@
 ![Example3](Running%20Examples/Example3b.jpg)
 
 
+
 פונקציה עולה:
 ![Example4](Running%20Examples/Example4a.jpg)
 ![Example4](Running%20Examples/Example4b.jpg)
+
+
 
 
 **שלבי פיתוח התוכנה:**
