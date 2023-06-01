@@ -25,20 +25,24 @@
 **דוגמאות ריצה:**
    
 מקרה ללא ציור גרף:
+
 ![Example1](Running%20Examples/Example1.jpg)
 <br/>  
 <br/>  
 פונקציה יורדת:
+
 ![Example2](Running%20Examples/Example2a.jpg)
 ![Example2](Running%20Examples/Example2b.jpg)
 <br/>  
 <br/>  
 פונקציה שמקבילה לציר x:
+
 ![Example3](Running%20Examples/Example3a.jpg)
 ![Example3](Running%20Examples/Example3b.jpg)
 <br/>  
 <br/>  
 פונקציה עולה:
+
 ![Example4](Running%20Examples/Example4a.jpg)
 ![Example4](Running%20Examples/Example4b.jpg)
 <br/>   
