@@ -4,7 +4,8 @@
 כיתה: י'3  
 בית ספר: ישיבת בני עקיבא גבעת שמואל   
 שנה: תשפ"ג (2023)  
-<br/>
+<br/>![image](https://github.com/baraksu/StraightLine/assets/131017988/747677b2-4e4d-409e-a5e9-5a16f28bbdb9)
+
 <br/>
 **מה התוכנית עושה?**
 
