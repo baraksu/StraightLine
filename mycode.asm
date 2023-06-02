@@ -379,7 +379,7 @@ proc DrawGraph
     mov cx, width-1 ;moves to cx the amount of pixels (x values) that need to be drawn
     graph:
         call PixelCalY  ;calculate the y value for the current pixel
-        call DrawPixel  ;draws the pixel
+        call DrawPixel2  ;draws the pixel
     loop graph
      
     ret
@@ -400,5 +400,20 @@ proc DrawPixel
     
     ret
 endp DrawPixel
+
+proc DrawPixel2
+    ;goal: draw a pixel
+    ;input: column = cx, row = dl 
+    ;outpu: draws a pixel
+     
+    xor dh,dh   ;makes sure dh is empty, so dl is the only thing that affect the row (hight) of the pixel
+    mov al, 5   ;sets the color to white
+    
+    ;draws the pixel on the screen in row: dx (dl), column: cx 
+    mov ah, 0ch
+    int 10h                                 
+    
+    ret
+endp DrawPixel2
     
 END
